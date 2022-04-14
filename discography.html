@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- 모바일은 화면크기를 자동으로 줄여서 표현하는 방식 1:1사이즈의 대응을 위하여 viewport코드를 추가한다 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        /* main slide btn */
+        $('#main-slidebt>li').click(function(){
+            $(this).css({'opacity':'1'}).siblings().css({'opacity':'0.3'});
+            $('#main-slide').stop().animate({'left': $(this).index() *-100+'%'},400);
+        });
+        /* main slide btn end */
+        /* menu popup */
+        $('#menu-icon1').click(function(){
+            $(this).hide();
+            $('#menu-popup').stop().fadeIn(350);
+            $('body').css({'overflow':'hidden'});
+        });
+        $('#menu-icon2').click(function(){
+            $('#menu-popup').stop().fadeOut(350);
+            $('#menu-icon1').show();
+            $('body').css({'overflow':'auto'});
+        });
+        /* menu popup end */
+    }); //전체괄호
+</script>
+<style>
+    * { margin: 0; padding: 0; list-style: none; font-family: 'Oswald', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; }
+    body,html { width: 100%; height: 100%; }
+   
+    /* header */
+    header { width: 100%; height: 63px; background-color: rgba(0,0,0,0.2); position: fixed; top: 0; left: 0; z-index: 9; }
+    #menu-icon1 { height: 100%; float: left; margin-left: 10px; cursor: pointer; }
+    #logo { position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; width: 55px; cursor: pointer; }
+    #lang { float: right; width: 90px; text-align: center; cursor: pointer; position: relative; }
+    #lang>span { line-height: 63px; font-size: 14px; color: #fff; opacity: 0.8; }
+    #lang:hover>span { opacity: 1; }
+    #lang:hover>.lang-sub { display: block; }
+    .lang-sub { width: 90px; height: 256px; font-size: 14px; padding-top: 7px; background:url(icons/lang-arrow.png) center top no-repeat; position: absolute; top: 56px; right: 0; display: none; }
+    .lang-sub>li { width: 100%; height: 64px; line-height: 64px; text-align: center; color: #626262; border-bottom: 1px solid #ddd; background-color: #fff; }
+    .lang-sub>li:nth-child(1) { background-color: #000; color: #fff; border-bottom: none; }
+    .lang-sub>li:nth-child(4) { border-bottom: none; }
+    .lang-sub>li:hover { background-color: #000; color: #fff; }
+    /* header end */
+    /* footer */
+    footer { width: 100%; height: 60px; background: #272727; position: fixed; bottom: 0; left: 0; z-index: 10000; }
+    #ft-icon { float: left; overflow: hidden; margin-left: 28px; text-align: center; }
+    #ft-icon>li { float: left; width: 30px; height: 30px; border-radius: 30px; margin-right: 10px; background-color: #111; margin-top: 15px; overflow: hidden; cursor: pointer; }
+    #ft-icon>li>img { width: 100%; opacity: 0.5; }
+    #ft-icon>li:hover>img { opacity: 1; }
+    #ft-selet-menu { width: 300px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; font-weight: 900; color: #929191; border-bottom: 1px solid rgba(255,255,255,0.3); position: absolute; top: 0; bottom: 0; right: 0; left: 0; margin: auto; cursor: pointer; }
+    #ft-selet-arrow { display: inline-block; width: 7px; height: 7px; margin-top: 20px; margin-right: 15px; border: solid #6b6b6b; border-width: 0 2px 2px 0; transform: rotate(225deg); }
+    #ft-selet-menu:hover { color: rgba(146,145,145,0.5); border-bottom: 1px solid rgb(75,75,75); }
+    #ft-selet-menu:hover>#ft-selet-arrow { transform: rotate(45deg); margin-top: 15px; }
+    .ft-selet-sub { width: 100%; position: absolute; bottom: 40px; left: 0; display: none; }
+    .ft-selet-sub>li { width: 100%; padding: 5px 0; font-size: 13px; text-align: center; color: #929191; background-color: #1e1e1e; border-bottom: 1px solid #282828; }
+    .ft-selet-sub>li:hover { background-color: #000; color: #fff;}
+    #ft-selet-menu:hover:hover>.ft-selet-sub { display: block; }
+    #ft-right { float: right; text-align: right; margin-right: 28px; margin-top: 10px; overflow: hidden; }
+    #ft-right>h6 { float: right; margin-right: 15px; font-size: 11px; color: #6b6b6b; font-weight: 400; cursor: pointer; }
+    #ft-right>p { clear: both; font-size: 10px; color: #6b6b6b; font-weight: 400; margin-top: 5px; }
+    /* footer end */
+    /* menu popup */
+    #menu-popup { width: 100%; height: 100%; position: fixed; top: 0; left: 0; z-index: 9999; display: none; }
+    #menu-icon2 { width: 63px; position: absolute; top: 0; left: 0; cursor: pointer; }
+    #menu-popup-left { width: 50%; height: 100%; float: left; background-color: rgba(0,0,0,0.85); position: relative; }
+    #menu-popup-left>ul { width: 364px; max-width: 364px; height: 510px; position: absolute; top: 0; bottom: 0; right: 0; margin: auto; }
+    #menu-popup-left>ul>li { width: 100%; height: 102px; line-height: 102px; text-align: center; color: #fff; font-size: 23px; font-weight: 700; border-bottom: 1px solid #fff; cursor: pointer; opacity: 0.5; }
+    #menu-popup-left>ul>li:nth-child(3) { opacity: 1; }
+    #menu-popup-left>ul>li:nth-child(4) { line-height: 51px; }
+    #menu-popup-right { width: 50%; height: 100%; float: right; background-color: rgba(0,0,0,0.9); position: relative; }
+    #menu-popup-right>ul { width: 80%; height: 510px; position: absolute; top: 0; left: 20%; bottom: 0; margin: auto; }
+    #menu-popup-right>ul>li { width: 100%; line-height: 7.5vh; text-align: left; font-size: 16px; font-weight: 700; color: #fff; opacity: 0.5; cursor: pointer; }
+    #menu-popup-right>ul>li:hover { opacity: 1; }
+    #menu-popup-right>ul>li:nth-child(1) { margin-top: 9vh; }
+    /* menu popup end */
+
+    #discography{width: 100%;padding: 100px 0; background-color: #ffdc00; color: #fff; text-align: center;}
+    #discography>h2{font-size: 60px; text-shadow: 0 3px 3px rgba(0,0,0,0.3); text-transform: uppercase; position: relative; z-index: 999;}
+    #discography>ul{width: 1000px;margin: auto; overflow: hidden; margin-top: -40px;}
+    #discography>ul>li{width: 31.333%;margin: 1%;float: left;position: relative; background-color: #000; cursor: pointer;}
+    #discography>ul>li>img{width: 100%;vertical-align: top;}
+    #discography>ul>li>h5{font-size: 12px;position: absolute;top: 40%; width: 100%; display: none;}
+    #discography>ul>li>h4{font-size: 14px;position: absolute;top: 45%; width: 100%; display: none;}
+    #discography>ul>li:hover>img{opacity: 0.5;}
+    #discography>ul>li:hover>h5{display: block;}
+    #discography>ul>li:hover>h4{display: block;}
+</style>
+<style>
+
+    /* 미디어쿼리 */
+    @media all and (min-width:320px){ /* 320~767 모바일 */ 
+        header { height: 80px; }
+        #logo { width: 60px; }
+        #lang>span { font-size: 19px; line-height: 80px; }
+        
+        footer { position: relative; height: auto; padding: 30px 0; }
+        #ft-icon>li { width: 8%; height: 7vw; margin-right: 2%; margin-top: 15px; display: inline-block; float: none; }
+        #ft-icon { float: none; }
+        #ft-selet-menu { position: relative; margin: 15px auto 25px; width: 90%; }
+        #ft-right { float: none; text-align: center; }
+        #ft-right>h6 { float: none; }
+        #ft-right>p { width: 100%; clear: both; }
+        #main-slidebt { bottom: 20%; }
+        #menu-icon2 { width: 12.9%; margin-left: 2%; }
+        #menu-popup-left>ul { width: 100%; }
+        .lang-sub { top: 73px; font-size: 19px; }
+        .ft-selet-sub>li:nth-child(5) { line-height: 40px; }
+        #discography>ul{width: 94%;}
+        #discography>ul>li:nth-child(1){width: 98%;}
+        #discography>ul>li{width: 48%;}
+        #discography>ul>li:hover>img{opacity: 1;}
+        #discography>ul>li:hover>h5{display: none;}
+        #discography>ul>li:hover>h4{display: none;}
+    }
+
+    @media all and (min-width:768px){ /* 768~1023 태블릿 */ 
+        header { height: 63px; }
+        #logo { width: 55px; }
+        #lang>span { font-size: 14px; line-height: 63px; }
+        
+        footer { position: fixed; height: 60px; padding: 0; }
+        #ft-icon>li { width: 25px; height: 25px; margin-right: 7px; margin-top: 20px; display: block; float: left; }
+        #ft-icon { float: left; margin-left: 28px; }
+        #ft-selet-menu { position: absolute; margin: auto; width: 20vw; }
+        #ft-right { float: right; }
+        #ft-right { float: right; text-align: right; }
+        #ft-right>h6 { float: right; }
+        #ft-right>p { width: 70%; float: right; }
+        #main-slidebt { bottom: 10%; }
+        #menu-icon2 { width: 63px; margin-left: 10px; }
+        #menu-popup-left>ul { width: 364px; }
+        .lang-sub { top: 56px; font-size: 14px; }
+        .ft-selet-sub>li:nth-child(5) { line-height: 20px; }
+        #discography>ul{width: 78%;}
+        #discography>ul>li:nth-child(1){width: 31.333%;}
+        #discography>ul>li{width: 31.333%;}
+        #discography>ul>li:hover>img{opacity: 0.5;}
+        #discography>ul>li:hover>h5{display: block; font-size: 1vw; top: 39%;}
+        #discography>ul>li:hover>h4{display: block; font-size: 1.5vw; top: 47%;}
+    }
+
+    @media all and (min-width:1024px){ /* 1024 pc */ 
+        header { height: 63px; }
+        #logo { width: 55px; }
+        #lang>span { font-size: 14px; line-height: 63px; }
+       
+        footer { position: fixed; height: 60px; padding: 0; }
+        #ft-icon>li { width: 30px; height: 30px; margin-right: 10px; margin-top: 15px; display: block; float: left; }
+        #ft-icon { float: left; margin-left: 28px; }
+        #ft-selet-menu { position: absolute; margin: auto; width: 300px; }
+        #ft-right { float: right; }
+        #ft-right { float: right; text-align: right; }
+        #ft-right>h6 { float: right; }
+        #ft-right>p { width: 100%; clear: both; }
+        #main-slidebt { bottom: 10%; }
+        #menu-icon2 { width: 63px; margin-left: 10px; }
+        #menu-popup-left>ul { width: 364px; }
+        .lang-sub { top: 56px; font-size: 14px; }
+        .ft-selet-sub>li:nth-child(5) { line-height: 40px; }
+        #discography>ul{width: 78%;}
+        #discography>ul>li:nth-child(1){width: 31.333%;}
+        #discography>ul>li{width: 31.333%;}
+        #discography>ul>li:hover>img{opacity: 0.5;}
+        #discography>ul>li>h5{display: block; font-size: 1vw; top: 39%;}
+        #discography>ul>li>h4{display: block; font-size: 1.5vw; top: 47%;}
+    }
+
+    @media all and (min-width:1300px){
+        #discography>ul{width: 1000px;}
+        #discography>ul>li:nth-child(1){width: 31.333%;}
+        #discography>ul>li{width: 31.333%;}
+        #discography>ul>li:hover>img{opacity: 0.5;}
+        #discography>ul>li:hover>h5{display: block; font-size: 20px; top: 39%;}
+        #discography>ul>li:hover>h4{display: block; font-size: 16px; top: 47%;}
+    }
+</style>
+</head>
+<body>
+   
+    <!-- header -->
+    <header>
+        <img src="btn-open-m.png" alt="" id="menu-icon1">
+        <img src="logo-m.png" alt="" id="logo">
+        <h3 id="lang">
+            <span>KOR</span>
+            <ul class="lang-sub">
+                <li>KOR</li>
+                <li>ENG</li>
+                <li>JPN</li>
+                <li>CHN</li>
+            </ul>
+        </h3>
+    </header>
+    <!-- header end -->
+    <div id="discography">
+        <h2>DISCOGRAPHY</h2>
+        <ul>
+            <li>
+                <img src="discography/cover1.jpg" alt="">
+                <h5>BUTTER</h5>
+            </li>
+            <li>
+                <img src="discography/cover2.jpg" alt="">
+                <h5>DIGITAL SINGLE</h5>
+                <h4>BUTTER</h4>
+            </li>
+            <li>
+                <img src="discography/cover3.jpg" alt="">
+                <h5>BE</h5>
+
+            </li>
+            <li>
+                <img src="discography/cover4.jpg" alt="">
+                <h5>DIGITAL SINGLE</h5>
+                <h4>DYNAMITE</h4>
+            </li>
+            <li>
+                <img src="discography/cover5.jpg" alt="">
+                <h5>4TH FULL-LENGTH ALBUM</h5>
+                <h4>MAP OF THE SOUL:7</h4>
+            </li>
+            <li>
+                <img src="discography/cover6.jpg" alt="">
+                <h5>THE 6TH MINI ALBUM</h5>
+                <h4>MAP OF THE SOUL:PERSONA</h4>
+            </li>
+            <li>
+                <img src="discography/cover7.jpg" alt="">
+                <h5>REPACKAGE ALBUM</h5>
+                <h4>LOVE YOURSELF 結 'ANSWER' </h4>
+            </li>
+            <li>
+                <img src="discography/cover8.jpg" alt="">
+                <h5>3RD FULL-LENGTH ALBUM</h5>
+                <h4>LOVE YOURSELF 結 'TEAR'</h4>
+            </li>
+            <li>
+                <img src="discography/cover9.jpg" alt="">
+                <h5>THE 5TH MINI ALBUM</h5>
+                <h4>LOVE YOURSELF 承 'Her‘</h4>
+            </li>
+            <li>
+                <img src="discography/cover10.jpg" alt="">
+                <h5>2ND SPECIAL ALBUM</h5>
+                <h4>YOU NEVER WALK ALONE</h4>
+            </li>
+            <li>
+                <img src="discography/cover11.jpg" alt="">
+                <h5>2ND FULL-LENGTH ALBUM</h5>
+                <h4>WINGS</h4>
+            </li>
+            <li>
+                <img src="discography/cover12.jpg" alt="">
+                <h5>1ST SPECIAL ALBUM</h5>
+                <h4>화양연화 YOUNG FOREVER</h4>
+            </li>
+            <li>
+                <img src="discography/cover13.jpg" alt="">
+                <h5>THE 4TH MINI ALBUM</h5>
+                <h4>화양연화 pt.2</h4>
+            </li>
+            <li>
+                <img src="discography/cover14.jpg" alt="">
+                <h5>THE 3RD MINI ALBUM</h5>
+                <h4>화양연화 pt.1</h4>
+            </li>
+            <li>
+                <img src="discography/cover15.jpg" alt="">
+                <h5>1ST FULL-LENGTH ALBUM</h5>
+                <h4>DARK & WILD</h4>
+            </li>
+            <li>
+                <img src="discography/cover16.jpg" alt="">
+                <h5>THE 2ND MINI ALBUM</h5>
+                <h4>SKOOL LUV AFFAIR</h4>
+            </li>
+            <li>
+                <img src="discography/cover17.jpg" alt="">
+                <h5>THE 1ST MINI ALBUM</h5>
+                <h4>O!RUL8,2?</h4>
+            </li>
+            <li>
+                <img src="discography/cover18.jpg" alt="">
+                <h5>THE 1ST SINGLE ALBUM</h5>
+                <h4>2 COOL 4 SKOOL</h4>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <!-- footer -->
+    <footer>
+        <ul id="ft-icon">
+            <li><img src="twitter-star2.png" alt=""></li>
+            <li><img src="twitter2.png" alt=""></li>
+            <li><img src="insta2.png" alt=""></li>
+            <li><img src="youtube2.png" alt=""></li>
+            <li><img src="weibo2.png" alt=""></li>
+            <li><img src="youku2.png" alt=""></li>
+            <li><img src="cafe2.png" alt=""></li>
+            <li><img src="weverse2.png" alt=""></li>
+            <li><img src="blog2.png" alt=""></li>
+        </ul>
+        <div id="ft-selet-menu">
+            FAMILY SITES
+            <div id="ft-selet-arrow"></div>
+            <ul class="ft-selet-sub">
+                <li>HYBE CO., LTD.</li>
+                <li>BIG HIT AUDITION</li>
+                <li>WEVERSE SHOP</li>
+                <li>WEVERSE</li>
+                <li>TOMORROW X TOGETHER OFFICIAL WEBSITE</li>
+                <li>LEE HYUN OFFICIAL WEBSITE</li>
+            </ul>
+        </div>
+        <div id="ft-right">
+            <h6>관련사이트</h6>
+            <p>COPYRIGHT © 2021 BIG HIT MUSIC / HYBE. ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <!-- menu popup -->
+    <div id="menu-popup">
+        <div id="menu-popup-left">
+            <ul>
+                <li>HOME</li>
+                <li>ABOUT</li>
+                <li>BTS</li>
+                <li>TOMORROW X <br> TOGETHER</li>
+                <li>LEE HYUN</li>
+            </ul>
+        </div>
+        <div id="menu-popup-right">
+            <ul>
+                <li><a href="index.html">HOME</a> </li>
+                <li><a href="profile.html">PROFILE</a> </li>
+                <li><a href="discography.html">DISCOGRAPHY</a></li>
+                <li>SCHEDULE</li>
+                <li>TOUR</li>
+            </ul>
+        </div>
+        <img src="btn-close-m.png" alt="" id="menu-icon2">
+    </div>
+    <!-- menu popup end -->
+</body>
+</html>
